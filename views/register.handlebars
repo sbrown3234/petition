@@ -1,0 +1,20 @@
+<div id="register">
+
+
+  {{#error}}
+    <h3>something went wrong. maybe you should fix it.</h3>
+  {{/error}}
+
+  {{#other}}
+  <h3>something went wrong in the hash-password promise</h3>
+  {{/other}}
+
+  <form action="/newUser" method="POST">
+    <input type="text" name="first" placeholder="First Name">
+    <input type="text" name="last" placeholder="Last Name">
+    <input type="text" name="username" placeholder="Username">
+    <input type="password" name="password" placeholder="Password">
+    <input type="checkbox" name="check"> Do you accept our cookie policy?
+    <button type="Submit">Register</button>
+  </form>
+</div>

@@ -1,0 +1,20 @@
+<div id="login">
+
+  {{#errorcheck}}
+  <h3>Your username or password, probably your password -- moron.</h3>
+  {{/errorcheck}}
+
+  {{#error}}
+  <h3>Why don't you type something in?</h3>
+  {{/error}}
+
+  {{#erroruser}}
+  <h3>I think your username is wrong...jk I know it is</h3>
+  {{/erroruser}}
+
+<form action="/login" method="POST">
+  <input type="text" name="username" placeholder="Username">
+  <input type="password" name="password" placeholder="Password">
+  <button type="Submit">Submit</button>
+</form>
+</div>

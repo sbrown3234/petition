@@ -1,0 +1,28 @@
+<div id="edit-profile">
+  <h3> Oh did you forget something? </h3>
+  <p>Typical. Not surprised</p>
+  {{#userInfo}}
+  <form action="/editUser" method="POST">
+    First Name: <input type="text" name="first" value="{{first}}">
+    Last Name:<input type="text" name="last" value="{{last}}">
+    Age:<input type="text" name="age" value="{{age}}">
+    City:<input type="text" name="city" value="{{city}}">
+    State:<input type="text" name="state" value="{{state}}">
+    Country:<input type="text" name="country" value="{{country}}">
+    Username:<input type="text" name="username" value="{{username}}">
+    Password:<input type="text" name="password" placeholder="Password">
+    Personal Website:<input type="text" name="url" value="{{url}}">
+    Profile Picture: <input type="file" name="file">
+
+    <div id="edit-sig">
+      Want to change your signature?<input name="sig" type="checkbox">
+      <div id="new-sig">
+        <input type="hidden" name="signature">
+        <canvas id="canv" height="100px" width="300"></canvas>
+      </div>
+    </div><br/>
+
+    <button type="Submit">Save Changes</button> <br/>
+  </form>
+  {{/userInfo}}
+</div>

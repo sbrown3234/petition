@@ -1,0 +1,26 @@
+<div id="form">
+
+  <h3>Make Golf Great Again</h3>
+  <p>Long before we let ourselves grow soft and supple to the luxuries of modern living, we as a people were accustomed to a more primal sense of entertainment. Now, we have become bogged down by commodity-covered sandtraps and pitfalls.</p>
+
+  <p>Golf could not better exemplify this sense of subpar satisfaction that we have been tricked into accepting.
+    If you too have grown tired of watching such a mind-numbing recreational activity become a full-blown elitist...recreational activity, join us.
+    If you too have fallen asleep somewhere between the front, back 9, or <i>honestly</i> who even gives a shit...something about 9, then join us.
+    Join us, sisters and brothers in making golf great again -- by driving the most manicured of sports back to its cantakerous roots.</p>
+
+    <p>We, the Grounds for a Better Way, believe that golf can be tolerable, even enjoyable -- IF, we act now in complete solidarity. Together, we can
+    tear down this clubhouse and build an arena, anew.</p>
+
+    {{#error}}
+      <h3> You screwed something up. Fix it, and don't fuck it up again.</h3>
+    {{/error}}
+
+  <form action="/signPetition" method="POST">
+    <h3>I, {{first}} {{last}}, support the cause as defined above.</h3>
+    <input type="hidden" name="signature">
+    <canvas id="canv" height="100px" width="300"></canvas>
+    <button type="Submit">Submit</button>
+  </form>
+
+
+</div>
