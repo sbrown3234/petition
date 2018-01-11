@@ -35,7 +35,7 @@
 
 <h1>Features In-Development</h1>
   <ul>
-    <li>Add email this to friends</li>
+    <li>Add email to friends</li>
   </ul>
 
 <h2>Contact</h2>
