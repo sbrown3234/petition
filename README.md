@@ -10,23 +10,21 @@
     <li>Database Management: PostgresSQL</li>
     <li>Content Management: Amazon Web Services</li>
   </ul>
-  
+
 <h1>Registration and Editing Information</h1>
-   <img style="height:300px; width:300px;" src="./assets/registration">
+   <img style="height:300px; width:300px;" src="./assets/register.png">
+   <img style="height:300px; width:300px;" src="./assets/information.png">
 <p>In order to access the site, users have to register. Afterwards, they can edit their information as they wish, including limiting what kind of information is collected on them through cookie-session.</p>
-   <img style="height:300px; width:300px;" src="./assets/edit-information">
+   <img style="height:300px; width:300px;" src="./assets/edit-profile.png">
 
 <h1>Signing</h1>
-    <img style="height:300px; width:300px;" src="./assets/signature">
-<p>Users are then directed to the "About" page where they can read more information about the topic and then choose to either sign or not sign the petition. Should they choose the latter, they will be redirected to a logout page, wishing them a happy 2018 and hope that they change their mind. However, if they are interested in signing the petition, they are free to draw their signature on a canvas and then view other signees.</p>
-    <img style="height:300px; width:300px;" src="./assets/logout">
-    
+    <img style="height:300px; width:300px;" src="./assets/sign.png">
+<p>Users are then directed to the "About" page where they can read more information about the topic and then choose to either sign or not sign the petition. Should they like to sign, they can draw their signature onto the canvas provided. If they would like to logout instead, they can use the menu on the side by clicking on the #DBAJ logo at the top.</p>
+    <img style="height:300px; width:300px;" src="./assets/logout.gif">
+
 <h1>Other Signees</h1>
-<p>Users that have signed are able to see all other signees and their basic information. Additionally, they can filter other signees based off of city, state, age, or country.</p>
- <div style="display:flex; flex-direction: row; justify-content: space-between; align-items: center; padding: 10px;">
-    <img style="height:300px; width:300px;" src="./assets/signees">
-    <img style="height:300px; width:300px;" src="./assets/signess-filter">
- </div>
+<p>Users that have signed are able to see all other signees and their basic information.</p>
+    <img style="height:300px; width:300px;" src="./assets/other-sigs.png">
 
 <h1>Features In-Development</h1>
   <ul>

@@ -1,20 +1,39 @@
-<div id="register">
+<div class="landing">
 
+  <div class="landing-container">
+    <div id="about">
+      <h1>Don't Be A Jerk</h1>
+      <div id="about-content">
+      <p>People are jerks, sometimes. And when they really get into feeling themselves for whatever reason
+      they can be unbearable. They drive away good people from nice cities, make other people leave jobs
+      and can cause real harm to the overall fabric of society. It <i>really</i> doesn't require a whole
+      lot of energy to stop the cylce of bafoonery, just a few nice people.</p>
 
+      <p>There may be quite a few jerks in the world, and who knows you probably are one yourself. So,
+      let's take the pledge together to build a better future now, by starting with something small --
+      let's just not be jerks. If you want to see a world with one less jerkoff, then sign <i>Don't Be A Jerk</i>,
+      because let's be honest, no one likes jerkoffs when they're hanging out at a bar, at work, at home, or in
+      the car trying to visit your relatives for a long-overdue reunion.</p>
+
+      <p>Be better. Be more. And, don't be a jerk. #DBAJ</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="bar"></div>
+
+  <div class="landing-form">
+  <h1>Register?</h1>
   {{#error}}
-    <h3>something went wrong. maybe you should fix it.</h3>
+    <p>Hey! Some jerk interferred with your registration. Try again!</p>
   {{/error}}
-
-  {{#other}}
-  <h3>something went wrong in the hash-password promise</h3>
-  {{/other}}
-
-  <form action="/newUser" method="POST">
+  <form action="/new-user" method="POST">
     <input type="text" name="first" placeholder="First Name">
     <input type="text" name="last" placeholder="Last Name">
-    <input type="text" name="username" placeholder="Username">
+    <input type="email" name="username" placeholder="Email">
     <input type="password" name="password" placeholder="Password">
-    <input type="checkbox" name="check"> Do you accept our cookie policy?
-    <button type="Submit">Register</button>
+    <button class="button" type="Submit">Register</button>
   </form>
+  <h2>Already registered? <a href="/login">Login</a></h2>
+</div>
 </div>

@@ -77,6 +77,8 @@
       const params = [id];
     return  db.query(q, params).then((results) => {
         return results.rows[0].signature;
+      }).catch((err) => {
+        console.log('getSig db err: ', err)
       })
   }
 
@@ -89,6 +91,8 @@
     ON user_profiles.user_id = petition.user_id;`
   return db.query(q).then((results) => {
     return results.rows
+  }).catch((err) => {
+    console.log('all sigs db err: ', err)
   })
   }
 
@@ -104,7 +108,7 @@
     return db.query(q,params).then((results) => {
       return results.rows
     }).catch((err) => {
-      console.log('error in server by country: ', err);
+      console.log('country db err: ', err);
     })
   }
 
@@ -118,7 +122,7 @@
     return db.query(q, params).then((results) => {
       return results.rows[0]
     }).catch((err) => {
-      console.log('fucked up userInfo db: ', err);
+      console.log('userInfo db err: ', err);
     })
   }
 
@@ -143,14 +147,4 @@ exports.updateUsername = (data, id) => {
 }
 
 
-  // exports.freeUsername = function(typedUser) {
-  //   const q = `SELECT first FROM users;`;
-  //   return db.query(q).then(function(user) {
-  //
-  //   })
-  // }
-
 })();
-
-//`Select signature FROM petition where id=req.sessions.id`
-//`Select hash_pass FROM users where `

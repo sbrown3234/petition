@@ -1,26 +1,26 @@
 <div id="form">
+  <div id="form-content">
+  <h1>Don't Be A Jerk</h1>
+  <p>In what seems like a decade, 2017 proved to be difficult. It proved to be overwhelming in some regards, and downright viscious in others.
+    This was in no small part due to the fact that there were just a lot of jerkoffs hanging around this year.</p>
 
-  <h3>Make Golf Great Again</h3>
-  <p>Long before we let ourselves grow soft and supple to the luxuries of modern living, we as a people were accustomed to a more primal sense of entertainment. Now, we have become bogged down by commodity-covered sandtraps and pitfalls.</p>
+  <p>Whether is was the occasional Weinstein, an unsettingly Le Pen, or the over-active social media user, there were a lot of people who
+    caused enough drama this year. From outlandish remarks to fake news, 2017, and previous years before as well, illustrated the wide berth
+    of the population that delight in just being some nasty SOB's.</p>
 
-  <p>Golf could not better exemplify this sense of subpar satisfaction that we have been tricked into accepting.
-    If you too have grown tired of watching such a mind-numbing recreational activity become a full-blown elitist...recreational activity, join us.
-    If you too have fallen asleep somewhere between the front, back 9, or <i>honestly</i> who even gives a shit...something about 9, then join us.
-    Join us, sisters and brothers in making golf great again -- by driving the most manicured of sports back to its cantakerous roots.</p>
-
-    <p>We, the Grounds for a Better Way, believe that golf can be tolerable, even enjoyable -- IF, we act now in complete solidarity. Together, we can
-    tear down this clubhouse and build an arena, anew.</p>
-
-    {{#error}}
-      <h3> You screwed something up. Fix it, and don't fuck it up again.</h3>
-    {{/error}}
-
-  <form action="/signPetition" method="POST">
-    <h3>I, {{first}} {{last}}, support the cause as defined above.</h3>
+  <p>But, comrades, there is hope. For wherever is social media, there is social media -- there's a viral video of small animials being adorable. And while
+  that is only online, realize that you too can be that video. So, spread your love like a non-lethal form of meningococcal meningitis and together
+  we can all stop this bafoonery. Say it loud, and say it proud. Don't be a jerk.</p>
+  </div>
+  <form action="/sign-petition" method="POST">
+    <h2>I, {{first}} {{last}}, do hereby pledge to not be a jerk.</h2>
     <input type="hidden" name="signature">
-    <canvas id="canv" height="100px" width="300"></canvas>
-    <button type="Submit">Submit</button>
+    <canvas id="canvas" height="100px" width="350px"></canvas>
+    <button class="button" type="Submit">Submit</button>
   </form>
 
+  {{#error}}
+    <h2> Something went wrong with your signature! Try again.</h2>
+  {{/error}}
 
 </div>
