@@ -6,10 +6,10 @@
   const bodyParser = require('body-parser');
   const cookieSession = require('cookie-session');
   const dbModule = require('./db');
-  const cache = require('./cache');
 
 
-  app.use('/public', express.static(__dirname + "/public"));
+
+  app.use(express.static(__dirname + "/public"));
 
 
   app.use(cookieParser());
@@ -55,25 +55,14 @@
   })
 
   app.get('/signed', (req, res) => {
-    cache.get('signers').then((results) => {
-      if(results) {
-        res.render('signed', {
-          layout: 'main',
-          names: results
-        })
-      } else {
-        dbModule.getAllSigs().then((results) => {
-          cache.setex('signers', 180, results).then(() => {
-            console.log(results, JSON.stringify(results));
-            res.render('signed', {
-              layout: 'main',
-              names: results
-            })
-          })
-        }).catch((err) => {
-          console.log('getAllSigs err: ', err)
-        })
-      }
+
+    dbModule.getAllSigs().then((results) => {
+      res.render('signed', {
+        layout: 'main',
+        names: results
+      })
+    }).catch((err) => {
+      console.log('getAllSigs err: ', err)
     })
   })
 
@@ -88,29 +77,23 @@
 
   app.post('/editUser', (req, res) => {
 
-  dbModule.updateProfile(req.body, req.session.user.id).then((results) => {
-    console.log(results);
-    if (req.body.password = '') {
-      console.log('nothing to see here');
-    } else {
-      dbModule.hashPassword(req.body.password, req.session.user.id)
-    }
-    if (req.body.username != req.session.user.user) {
-      dbModule.updateUsername(req.body, req.session.user.id);
-    }
-  }).catch((err) => {
-    console.log('edit info err: ', err)
-  })
-  res.redirect('/signed')
-})
-
-  app.get('/register', (req, res) => {
-    res.render('register', {
-      layout: 'landing'
-    });
+    dbModule.updateProfile(req.body, req.session.user.id).then((results) => {
+      console.log(results);
+      if (req.body.password = '') {
+        console.log('nothing to see here');
+      } else {
+        dbModule.hashPassword(req.body.password, req.session.user.id)
+      }
+      if (req.body.username != req.session.user.user) {
+        dbModule.updateUsername(req.body, req.session.user.id);
+      }
+    }).catch((err) => {
+      console.log('edit info err: ', err)
+    })
+    res.redirect('/signed')
   })
 
-  app.post('/newUser', (req, res) => {
+  app.post('/new-user', (req, res) => {
     if (!req.body.username || !req.body.password) {
       res.render('register', {
         layout: 'landing',
@@ -126,7 +109,6 @@
           id: id,
           login: true
         }
-        console.log(req.session.user.id)
         res.redirect('/profile');
       }).catch((err) => {
         console.log("this is an error in the hashPass post: ", err);
@@ -134,7 +116,7 @@
     }
   });
 
-  app.post('/signPetition', (req, res) => {
+  app.post('/sign-petition', (req, res) => {
     if(!req.body.signature) {
       res.render('form', {
         layout: 'main',
@@ -144,16 +126,14 @@
       dbModule.newSign(req.body.signature, req.session.user.id).then((id) => {
         req.session.user.signed = true;
         req.session.user.signId = id;
-        console.log(req.session.user);
-        cache.del('signers');
-        res.redirect('/thank-you');
+        res.redirect('/thanks');
       }).catch((err) => {
         console.log('new sign error: ', err)
       })
     }
   });
 
-  app.get('/thank-you', (req, res) => {
+  app.get('/thanks', (req, res) => {
     if(!req.session.user.signed) {
       res.redirect('/petition')
     } else {
@@ -173,14 +153,14 @@
   app.get('/profile', (req, res) => {
     res.render('profile', {
       layout: 'landing',
-      name: req.session.user.user
+      name: req.session.user.first
     })
   })
 
   app.post('/newProfile', (req, res) => {
     dbModule.newProfile(req.body, req.session.user.id).then((results) => {
       console.log(results);
-      res.redirect('/mission');
+      res.redirect('/petition');
     }).catch((err) => {
       console.log('profile fail: ', err)
     })
@@ -196,7 +176,7 @@
 
   app.get('/login', (req, res) => {
     res.render('login', {
-      layout: 'main'
+      layout: 'landing'
     })
   })
 
@@ -204,7 +184,7 @@
     if (!req.body.username || !req.body.password) {
 
       res.render('login', {
-        layout: 'main',
+        layout: 'landing',
         error: true
       });
 
@@ -214,37 +194,23 @@
         dbModule.checkPassword(req.body.password, hash).then((match) => {
           console.log(match)
           if (match == true) {
-            res.redirect('/mission');
+            res.redirect('/about');
           } else {
             res.render('login', {
-              layout: 'main',
+              layout: 'landing',
               errorcheck: true
             });
           }
         })
       }).catch((err) => {
-          res.render('login', {
-            layout: 'main',
-            erroruser: true
-          });
-          console.log('almost to mission page: ', err);
-        })
-      }
-    })
-
-  app.use((req, res, next) => {
-    if (req.body.check == 'on') {
-      //put more cookies if want
+        res.render('login', {
+          layout: 'landing',
+          erroruser: true
+        });
+        console.log('checkUsername err: ', err)
+      })
     }
-    next();
   })
-
-  app.get('/mission', (req, res) => {
-    res.render('mission', {
-      layout: 'main'
-    })
-  })
-
 
 
   app.get('/logout', (req,res) => {
@@ -254,9 +220,21 @@
     res.session = null;
   })
 
+  app.get('*', (req, res) => {
+    if (!req.session.user) {
+      res.render('register', {
+        layout: 'landing'
+      })
+    } else {
+      res.render('thanks', {
+        layout: 'main'
+      })
+    }
+  })
+
 
   app.listen(8080, () => {
-    console.log("maoooooo")
+    console.log("listening on 8080")
   })
 
 })()

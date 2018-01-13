@@ -1,20 +1,24 @@
-<div id="login">
+<div class="landing">
+
+  <div class="landing-form">
+  <h1>Login</h1>
 
   {{#errorcheck}}
-  <h3>Your username or password, probably your password -- moron.</h3>
+  <thanksp>There was a problem with your password. Try again.</p>
   {{/errorcheck}}
 
   {{#error}}
-  <h3>Why don't you type something in?</h3>
+  <p>Try again.</p>
   {{/error}}
 
   {{#erroruser}}
-  <h3>I think your username is wrong...jk I know it is</h3>
+  <p>There was a problem with your username. Try again.</p>
   {{/erroruser}}
 
 <form action="/login" method="POST">
-  <input type="text" name="username" placeholder="Username">
+  <input type="email" name="username" placeholder="Email">
   <input type="password" name="password" placeholder="Password">
-  <button type="Submit">Submit</button>
+  <button class="button" type="Submit">Submit</button>
 </form>
+</div>
 </div>
