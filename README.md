@@ -13,7 +13,7 @@
 <h1>Registration and Editing Information</h1>
    <img style="height:300px; width:300px;" src="./assets/register.png">
    <img style="height:300px; width:300px;" src="./assets/information.png">
-<p>In order to access the site, users have to register. Afterwards, they can edit their information as they wish, including limiting what kind of information is collected on them through cookie-session.</p>
+<p>In order to access the site, users have to register. Then, they are asked to provide basic demographic information about themselves. If at any point in the future they'd like to change their information, they can edit it through the edit profile page.</p>
    <img style="height:300px; width:300px;" src="./assets/edit-profile.png">
 
 <h1>Signing</h1>
