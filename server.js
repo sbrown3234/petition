@@ -27,19 +27,6 @@
   app.engine('handlebars', hb());
   app.set('view engine', 'handlebars');
 
-  app.get('/profile/:id', (req, res) => {
-    otherId = req.params.id
-
-    dbModule.userInfo(otherId).then((results) => {
-      res.render('other-profile', {
-        layout: 'main',
-        otherUserInfo: results
-      })
-    }).catch((err)=> {
-      console.log('get otherUserInfo err: ', err)
-    })
-  })
-
 
   app.get('/signed/:city', (req, res) => {
     dbModule.byCity(req.params.city).then((results) => {
@@ -54,23 +41,15 @@
     })
   })
 
-  app.get('/signed', (req, res) => {
-
-    dbModule.getAllSigs().then((results) => {
-      res.render('signed', {
-        layout: 'main',
-        names: results
-      })
-    }).catch((err) => {
-      console.log('getAllSigs err: ', err)
-    })
-  })
-
   app.get('/edit-profile', (req, res) => {
-    dbModule.userInfo(req.session.user.id).then((results) => {
+    Promise.all([dbModule.userInfo(req.session.user.id),
+                  dbModule.getSig(req.session.user.id)])
+      .then((results) => {
+        console.log('results: ', results[0], results[1])
       res.render('edit', {
         layout: 'main',
-        userInfo: results
+        userInfo: results[0],
+        sig: results[1]
       });
     })
   })
@@ -93,6 +72,36 @@
     res.redirect('/signed')
   })
 
+  app.get('/signed', (req, res) => {
+
+    dbModule.getAllSigs().then((results) => {
+      res.render('signed', {
+        layout: 'main',
+        names: results
+      })
+    }).catch((err) => {
+      console.log('getAllSigs err: ', err)
+    })
+  })
+
+
+    app.post('/sign-petition', (req, res) => {
+      if(!req.body.signature) {
+        res.render('form', {
+          layout: 'main',
+          error: true
+        })
+      } else {
+        dbModule.newSign(req.body.signature, req.session.user.id).then((id) => {
+          req.session.user.signed = true;
+          req.session.user.signId = id;
+          res.redirect('/thanks');
+        }).catch((err) => {
+          console.log('new sign error: ', err)
+        })
+      }
+    });
+
   app.post('/new-user', (req, res) => {
     if (!req.body.username || !req.body.password) {
       res.render('register', {
@@ -112,23 +121,6 @@
         res.redirect('/profile');
       }).catch((err) => {
         console.log("this is an error in the hashPass post: ", err);
-      })
-    }
-  });
-
-  app.post('/sign-petition', (req, res) => {
-    if(!req.body.signature) {
-      res.render('form', {
-        layout: 'main',
-        error: true
-      })
-    } else {
-      dbModule.newSign(req.body.signature, req.session.user.id).then((id) => {
-        req.session.user.signed = true;
-        req.session.user.signId = id;
-        res.redirect('/thanks');
-      }).catch((err) => {
-        console.log('new sign error: ', err)
       })
     }
   });
