@@ -6,9 +6,8 @@
    <ul>
     <li>Language: Javascript</li>
     <li>Backend: Node / Express</li>
-    <li>Frontend: JQuery, HTML5, CSS</li>
+    <li>Frontend: Handlebars, JQuery, HTML5, CSS</li>
     <li>Database Management: PostgresSQL</li>
-    <li>Content Management: Amazon Web Services</li>
   </ul>
 
 <h1>Registration and Editing Information</h1>
