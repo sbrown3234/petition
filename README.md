@@ -12,20 +12,14 @@
   </ul>
   
 <h1>Registration and Editing Information</h1>
-  <div style="display:flex; flex-direction: row; justify-content: space-between; align-items: center; padding: 10px;">
-    <img style="height:300px; width:300px;" src="./assets/registration">
-    <img style="height:300px; width:300px;" src="./assets/information">
-  </div>
+   <img style="height:300px; width:300px;" src="./assets/registration">
 <p>In order to access the site, users have to register. Afterwards, they can edit their information as they wish, including limiting what kind of information is collected on them through cookie-session.</p>
    <img style="height:300px; width:300px;" src="./assets/edit-information">
 
 <h1>Signing</h1>
-  <div style="display:flex; flex-direction: row; justify-content: space-between; align-items: center; padding: 10px;">
-    <img style="height:300px; width:300px;" src="./assets/about">
-    <img style="height:300px; width:300px;" src="./assets/logout">
-  </div>
+    <img style="height:300px; width:300px;" src="./assets/signature">
 <p>Users are then directed to the "About" page where they can read more information about the topic and then choose to either sign or not sign the petition. Should they choose the latter, they will be redirected to a logout page, wishing them a happy 2018 and hope that they change their mind. However, if they are interested in signing the petition, they are free to draw their signature on a canvas and then view other signees.</p>
-    <img style="height:300px; width:300px;" src="./assets/signing">
+    <img style="height:300px; width:300px;" src="./assets/logout">
     
 <h1>Other Signees</h1>
 <p>Users that have signed are able to see all other signees and their basic information. Additionally, they can filter other signees based off of city, state, age, or country.</p>
